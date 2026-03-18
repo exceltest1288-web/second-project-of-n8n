@@ -1,0 +1,745 @@
+{
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        456
+      ],
+      "id": "fe88a6be-7e1d-4034-8580-ed2d3ad4f57b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "0498dcb5-4f9b-429d-bc93-321eaf6a0812",
+              "leftValue": "={{ $json['Payment Status'] }}",
+              "rightValue": "Paid",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -560,
+        -64
+      ],
+      "id": "7383da97-80d1-4f0b-8e31-7714cc6d9480",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e648ac5e-6adc-4ea4-a17a-0b1aebc439e4",
+              "leftValue": "={{ $json['Payment Status'] }}",
+              "rightValue": "Overdue",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -336,
+        32
+      ],
+      "id": "93d6d887-4fec-4c08-abe8-362fa885a42e",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 158001274,
+          "mode": "list",
+          "cachedResultName": "unpaid",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A/edit#gid=158001274"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Customer Id": "={{ $json['Customer Id'] }}",
+            "Customer Name": "={{ $json['Customer Name'] }}",
+            "Customer Email": "={{ $json['Customer Email'] }}",
+            "Customer Phone": "={{ $json['Customer Phone'] }}",
+            "Invoice Due": "={{ $json['Invoice Due'] }}",
+            "Payment Status": "={{ $json['Payment Status'] }}",
+            "Payment Date": "={{ $json['Payment Date'] }}",
+            "Due Date": "={{ $json['Due Date'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Customer Id",
+              "displayName": "Customer Id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Email",
+              "displayName": "Customer Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Phone",
+              "displayName": "Customer Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Invoice Due",
+              "displayName": "Invoice Due",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Payment Status",
+              "displayName": "Payment Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Payment Date",
+              "displayName": "Payment Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Due Date",
+              "displayName": "Due Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -112,
+        128
+      ],
+      "id": "e1cc5161-111e-4838-bb45-f4a099df6116",
+      "name": "Append row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WGMinkOi1iP9v7de",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 902910345,
+          "mode": "list",
+          "cachedResultName": "Overdue",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A/edit#gid=902910345"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Customer Id": "={{ $json['Customer Id'] }}",
+            "Customer Name": "={{ $json['Customer Name'] }}",
+            "Customer Email": "={{ $json['Customer Email'] }}",
+            "Customer Phone": "={{ $json['Customer Phone'] }}",
+            "Invoice Due": "={{ $json['Invoice Due'] }}",
+            "Payment Status": "={{ $json['Payment Status'] }}",
+            "Payment Date": "={{ $json['Payment Date'] }}",
+            "Due Date": "={{ $json['Due Date'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Customer Id",
+              "displayName": "Customer Id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Email",
+              "displayName": "Customer Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Phone",
+              "displayName": "Customer Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Invoice Due",
+              "displayName": "Invoice Due",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Payment Status",
+              "displayName": "Payment Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Payment Date",
+              "displayName": "Payment Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Due Date",
+              "displayName": "Due Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -112,
+        -64
+      ],
+      "id": "6e22fd74-fb21-4661-9cda-35bb5c90edbf",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WGMinkOi1iP9v7de",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A",
+          "mode": "list",
+          "cachedResultName": "Python mode",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 822216770,
+          "mode": "list",
+          "cachedResultName": "Paid",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A/edit#gid=822216770"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Customer Id": "={{ $json['Customer Id'] }}",
+            "Customer Name": "={{ $json['Customer Name'] }}",
+            "Customer Email": "={{ $json['Customer Email'] }}",
+            "Customer Phone": "={{ $json['Customer Phone'] }}",
+            "Invoice Due": "={{ $json['Invoice Due'] }}",
+            "Payment Status": "={{ $json['Payment Status'] }}",
+            "Payment Date": "={{ $json['Payment Date'] }}",
+            "Due Date": "={{ $json['Due Date'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Customer Id",
+              "displayName": "Customer Id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Email",
+              "displayName": "Customer Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Phone",
+              "displayName": "Customer Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Invoice Due",
+              "displayName": "Invoice Due",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Payment Status",
+              "displayName": "Payment Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Payment Date",
+              "displayName": "Payment Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Due Date",
+              "displayName": "Due Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -336,
+        -256
+      ],
+      "id": "9cdcd2a1-4b54-44c1-b944-94966c8c5b91",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WGMinkOi1iP9v7de",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = [];\n\nfor (let i = 1; i <= 1000; i++) {\n  const statusOptions = [\"Paid\", \"Unpaid\", \"Overdue\"];\n  const status = statusOptions[Math.floor(Math.random() * statusOptions.length)];\n\n  data.push({\n    json: {\n      \"Customer Id\": `CUST${String(i).padStart(4, '0')}`,\n      \"Customer Name\": `Customer ${i}`,\n      \"Customer Email\": `customer${i}@example.com`,\n      \"Customer Phone\": `0300${Math.floor(1000000 + Math.random() * 9000000)}`,\n      \"Invoice Due\": \"2025-01-01\",\n      \"Payment Status\": status,\n      \"Payment Date\": status === \"Paid\" ? \"2025-01-05\" : \"\",\n      \"Due Date\": \"2025-01-15\"\n    }\n  });\n}\n\nreturn data;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -336,
+        464
+      ],
+      "id": "f5e872eb-70b9-40f6-957d-fe924b79d319",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A",
+          "mode": "list",
+          "cachedResultName": "Python mode",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1127849300,
+          "mode": "list",
+          "cachedResultName": "Mix data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1elroNdoYRt1XEzOMhnRxTkN29Al5TCDRacOlA7BRO2A/edit#gid=1127849300"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -112,
+        456
+      ],
+      "id": "2596f6c8-f8bf-4c9d-a1d0-9db07be0b194",
+      "name": "Append row in sheet3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WGMinkOi1iP9v7de",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        112,
+        456
+      ],
+      "id": "dd22bbaf-85de-405f-a8f4-fac1d47e5cde",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyze this customer payment data and provide a concise summary with key insights and recommendations:\n\nTotal Records: {{ $json.totalRecords }}\nPaid: {{ $json.paidCount }} ({{ $json.paidPercentage }}%)\nUnpaid: {{ $json.unpaidCount }} ({{ $json.unpaidPercentage }}%)\nOverdue: {{ $json.overdueCount }} ({{ $json.overduePercentage }}%)\n\nProvide a brief analysis and actionable recommendations.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        560,
+        456
+      ],
+      "id": "698f241c-4b92-4e82-806d-014018a3d11c",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4",
+          "mode": "list",
+          "cachedResultName": "gpt-4"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        632,
+        680
+      ],
+      "id": "8fa34f3b-3148-4980-90a2-c28ae63380c9",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "l9LsFlQ2XkOjtoLl",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "jhundlife123@gmail.com",
+        "subject": "=Customer Payment Data Summary - {{ $now.toFormat(\"MMMM d, yyyy\") }}",
+        "message": "=<h2>Customer Payment Data Summary</h2>\n<p><strong>Generated:</strong> {{ $now.toISO() }}</p>\n<hr>\n<div style=\"white-space: pre-wrap;\">{{ $json.output }}</div>",
+        "options": {}
+      },
+      "id": "67bcc153-d43b-4e8f-bf80-9d07dfedf591",
+      "name": "Send Email Summary",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        912,
+        456
+      ],
+      "webhookId": "fe564969-b7fc-4cda-984c-c87a6ecac99a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qNTdnbXwzBQ5dM1H",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json.data;\n\nconst totalRecords = data.length;\nconst paidCount = data.filter(r => r[\"Payment Status\"] === \"Paid\").length;\nconst unpaidCount = data.filter(r => r[\"Payment Status\"] === \"Unpaid\").length;\nconst overdueCount = data.filter(r => r[\"Payment Status\"] === \"Overdue\").length;\n\nconst summary = {\n  totalRecords,\n  paidCount,\n  unpaidCount,\n  overdueCount,\n  paidPercentage: ((paidCount / totalRecords) * 100).toFixed(2),\n  unpaidPercentage: ((unpaidCount / totalRecords) * 100).toFixed(2),\n  overduePercentage: ((overdueCount / totalRecords) * 100).toFixed(2)\n};\n\nreturn [{ json: summary }];"
+      },
+      "id": "01275a5e-9a3a-45c8-9a9f-1d82929ea81c",
+      "name": "Summarize Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        336,
+        456
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        []
+      ]
+    },
+    "Append row in sheet2": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet3": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Summarize Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send Email Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize Data": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "91641c93-370a-4549-a063-c87c6249e13d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "68d3fbbe1d720b985d9d7b984b2d4b86cdfc39b521410efdd0e1ea60a61c747b"
+  },
+  "id": "G7lhKLzzMi4s4EuY",
+  "tags": []
+}
